@@ -1,0 +1,141 @@
+name: WeatherStation Indoor Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache PlatformIO dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-platformio-${{ hashFiles('**/platformio.ini') }}
+        restore-keys: |
+          ${{ runner.os }}-platformio-
+          
+    - name: Install PlatformIO
+      run: |
+        pip install platformio
+        pio --version
+        
+    - name: Install dependencies
+      run: |
+        pio lib install
+        
+    - name: Show test environment info
+      run: |
+        pio run -e test --target listenv
+        
+    - name: Run tests
+      run: |
+        pio test -e test --without-uploading -v
+        
+    - name: Check test results
+      if: always()
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "All tests passed!"
+        else
+          echo "Some tests failed!"
+          exit 1
+        fi
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache PlatformIO dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-platformio-${{ hashFiles('**/platformio.ini') }}
+        restore-keys: |
+          ${{ runner.os }}-platformio-
+          
+    - name: Install PlatformIO
+      run: |
+        pip install platformio
+        pio --version
+        
+    - name: Install dependencies
+      run: |
+        pio lib install
+        
+    - name: Build project
+      run: |
+        pio run -e lilygo-t-display
+        
+    - name: Check build results
+      if: always()
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "Build successful!"
+        else
+          echo "Build failed!"
+          exit 1
+        fi
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache PlatformIO dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-platformio-${{ hashFiles('**/platformio.ini') }}
+        restore-keys: |
+          ${{ runner.os }}-platformio-
+          
+    - name: Install PlatformIO
+      run: |
+        pip install platformio
+        pio --version
+        
+    - name: Install dependencies
+      run: |
+        pio lib install
+        
+    - name: Run linting
+      run: |
+        pio check -e lilygo-t-display
+        
+    - name: Check linting results
+      if: always()
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "Linting passed!"
+        else
+          echo "Linting failed!"
+          exit 1
+        fi

@@ -11,7 +11,7 @@
 // WiFi Configuration
 #define WIFI_HOSTNAME "weatherstation"
 #define WIFI_AP_SSID "WeatherStation"
-#define WIFI_AP_PASSWORD "12345678"
+#define WIFI_AP_PASSWORD "12345678"  // Default AP password (change in secrets.h)
 #define WIFI_CONFIG_TIMEOUT 180  // 3 minutes
 
 // Web Server Configuration
@@ -35,7 +35,7 @@
 #define TFT_BL   4   // Backlight pin for LilyGo T-Display
 
 // Time Configuration
-#define TIMEZONE_LOCATION "Europe/Riga"
+#define TIMEZONE_LOCATION "Asia/Jerusalem"  // Default timezone (change in secrets.h)
 
 // Data Array Size
 #define OUTDOOR_VALUES_COUNT 5

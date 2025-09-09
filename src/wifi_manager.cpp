@@ -122,7 +122,7 @@ void WeatherStationWiFiManager::startConfigPortal() {
     Serial.println("Starting WiFi configuration portal...");
     Serial.println("Connect to WiFi network: " + String(WIFI_AP_SSID));
     Serial.println("Password: " + String(WIFI_AP_PASSWORD));
-    Serial.println("Then navigate to: http://" + String(WIFI_HOSTNAME) + ".local or http://192.168.4.1");
+    Serial.println("Then navigate to: http://" + String(WIFI_HOSTNAME) + ".local");
     Serial.println("Or simply open any website - you'll be redirected automatically!");
     
     wifiManager.startConfigPortal(WIFI_AP_SSID, WIFI_AP_PASSWORD);

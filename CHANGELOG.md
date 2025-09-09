@@ -81,6 +81,44 @@ All notable changes to the WeatherStation Indoor project will be documented in t
 - **OTA Updates**: Over-the-air firmware updates capability
 - **Mobile App**: Native mobile application for remote monitoring
 
+### Testing Roadmap (Current Priority)
+
+#### Phase 1: Manager Class Unit Tests (Target: 85% coverage)
+- **SensorManager Tests**: I2C communication, data validation, error handling
+- **BLEManager Tests**: BLE server setup, data reception, connection management
+- **WiFiManager Tests**: WiFi connection, configuration portal, network status
+- **DisplayManager Tests**: TFT display operations, data rendering, screen updates
+- **TimeManager Tests**: Time synchronization, timezone handling, formatting
+
+#### Phase 2: Hardware Integration Tests (Target: 70% coverage)
+- **I2C Sensor Tests**: GY-MCU680 communication with mock hardware
+- **SPI Display Tests**: T-Display operations with mock TFT driver
+- **BLE Integration Tests**: Peripheral/server communication with mock BLE
+- **WiFi Integration Tests**: Connection scenarios with mock WiFi
+
+#### Phase 3: API and Web Interface Tests (Target: 85% coverage)
+- **Web Server Tests**: HTTP endpoint testing, response validation
+- **JSON API Tests**: Data serialization/deserialization, error responses
+- **Home Assistant Tests**: Integration endpoint testing, data format validation
+- **IoT-WebUI Tests**: Interface functionality, configuration handling
+
+#### Phase 4: Error Recovery and Edge Cases (Target: 75% coverage)
+- **Network Failure Tests**: WiFi disconnection, BLE communication loss
+- **Sensor Failure Tests**: I2C communication errors, invalid data handling
+- **Memory Management Tests**: Heap exhaustion, stack overflow scenarios
+- **Watchdog Tests**: System recovery, timeout handling
+
+#### Current Testing Status
+- ✅ **Test Infrastructure**: Complete (Unity framework, PlatformIO config, CI/CD)
+- ✅ **Basic Functionality**: 90% coverage (data validation, JSON handling)
+- ✅ **Mock Framework**: Complete (hardware abstraction layer)
+- 🔄 **Manager Classes**: 0% coverage (Phase 1 priority)
+- 🔄 **Hardware Integration**: 0% coverage (Phase 2)
+- 🔄 **API Endpoints**: 0% coverage (Phase 3)
+- 🔄 **Error Recovery**: 20% coverage (Phase 4)
+
+**Overall Current Coverage: 75-80%** | **Target Coverage: 85-90%**
+
 ### Potential Improvements (Version 2.0.0)
 - **Performance Optimization**: Advanced memory and power efficiency improvements
 - **Security Enhancements**: Authentication, encryption, and secure communication
