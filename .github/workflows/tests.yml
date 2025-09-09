@@ -36,10 +36,6 @@ jobs:
       run: |
         pio lib install
         
-    - name: Show test environment info
-      run: |
-        pio run -e test --target listenv
-        
     - name: Build test environment
       run: |
         pio run -e test
